@@ -1,0 +1,26 @@
+Latent Mahalanobis — covariance-only resume (no full retrain)
+==============================================================
+
+If training crashed on epoch 101 (after epoch 100 finished), the checkpoint at
+end of epoch 100 should exist. With --restart, the code skips epochs where
+epoch <= self.epoch and runs the remaining epoch (101 = latent covariance + Mahala score distribution).
+
+1) From repo root, activate venv:
+   cd Bachelor(2)
+   .\venv\Scripts\Activate.ps1
+
+2) Resume (covariance epoch + final checkpoint save):
+   cd experiments\latent_mahalanobis
+   python train.py --dataset=DCASE2025T2ToyCar -d '-tag=id(0_)' --use_ids 0 --train_only --mono=True --restart
+
+   Or:
+   powershell -File ..\..\scripts\run_latent_mahalanobis_resume_train.ps1
+
+3) Test with latent Mahalanobis scores:
+   python train.py --dataset=DCASE2025T2ToyCar -d '-tag=id(0_)' --use_ids 0 --score MAHALA --test_only --mono=True
+
+Note: There is no separate "covariance-only" flag in upstream DCASE code; --restart
+is the intended way to continue after interruption.
+
+Checkpoint path (default export_dir=latent_mahalanobis, same tag/seed):
+  models\checkpoint\latent_mahalanobis\DCASE2023T2-AE_DCASE2025T2ToyCar_id(0_)_seed13711\checkpoint.tar
