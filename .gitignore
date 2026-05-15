@@ -17,10 +17,16 @@ checkpoints/
 
 # experiment outputs
 results/
+evaluation_runs/
 outputs/
 logs/
 runs/
 wandb/
+
+# official evaluator staging (keep repo clean; regenerate from baseline CSVs)
+evaluator_repo/teams/
+evaluator_repo/teams_result/
+evaluator_repo/teams_additional_result/
 
 # cache
 cache/
@@ -34,6 +40,8 @@ __pycache__/
 # environments
 venv/
 .venv/
+.venv_eval/
+evaluator_repo/venv/
 .env/
 
 # vscode
