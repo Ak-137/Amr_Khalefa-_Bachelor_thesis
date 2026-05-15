@@ -1,0 +1,40 @@
+# datasets
+datasets/
+data/
+
+# generated features
+*.pickle
+*.pkl
+*.npy
+*.npz
+
+# models/checkpoints
+*.pth
+*.pt
+*.ckpt
+models/
+checkpoints/
+
+# experiment outputs
+results/
+outputs/
+logs/
+runs/
+wandb/
+
+# cache
+cache/
+*.cache
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# environments
+venv/
+.venv/
+.env/
+
+# vscode
+.vscode/
