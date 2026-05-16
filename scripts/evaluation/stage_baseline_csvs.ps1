@@ -8,12 +8,16 @@ Does not modify evaluator code.
 param(
     [string]$ExperimentName = "baseline_run",
     [string]$Score = "MSE",
-    [string]$ExportDir = "baseline",
+    [string]$ExportDir = "",  # default: baseline for baseline_run, latent_mahalanobis for that experiment
     [string]$SystemName = "baseline_mse_seed13711",
     [string]$TeamName = "thesis"
 )
 
 . (Join-Path $PSScriptRoot "config.ps1")
+
+if (-not $ExportDir) {
+    $ExportDir = if ($ExperimentName -eq "latent_mahalanobis") { "latent_mahalanobis" } else { "baseline" }
+}
 
 $srcDir = Get-BaselineEvalCsvDir -ExperimentName $ExperimentName -Score $Score -ExportDir $ExportDir
 if (-not (Test-Path $srcDir)) {
