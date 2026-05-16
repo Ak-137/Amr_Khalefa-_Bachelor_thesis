@@ -1,0 +1,22 @@
+---
+description: DCASE ASD research (ToyADMOS / ToyRCCar) — concise, minimal-diff workflow
+alwaysApply: true
+---
+
+# DCASE ASD Research
+
+This project is for **DCASE anomaly sound detection (ASD)** research using **ToyADMOS** and **ToyRCCar** (DCASE Task 2 style).
+
+## Agent behavior
+
+- Keep answers concise.
+- Do not rewrite full files unless necessary.
+- Prefer minimal code diffs.
+- Explain only changed lines.
+- Avoid repeating previous explanations.
+- Preserve existing APIs.
+- Do not refactor unrelated code.
+- Always show exact file paths before edits.
+- Prefer debugging over rewriting.
+- Use the existing project structure (`experiments/`, `results/`, etc.).
+- Avoid generating long tutorials unless requested.
