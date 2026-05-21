@@ -32,13 +32,13 @@ GROUND_TRUTH_DOMAIN_DIR = "ground_truth_domain"
 GROUND_TRUTH_ATTRIBUTES_DIR = "ground_truth_attributes"
 
 MACHINE_TYPE_LIST = [
-    "AutoTrash",
-    "BandSealer",
-    "CoffeeGrinder",
-    "HomeCamera",
-    "Polisher",
-    "ScrewFeeder",
-    "ToyPet",
+    # "AutoTrash",
+    # "BandSealer",
+    # "CoffeeGrinder",
+    # "HomeCamera",
+    # "Polisher",
+    # "ScrewFeeder",
+    # "ToyPet",
     "ToyRCCar",
 ]
 
@@ -474,7 +474,7 @@ if __name__ == "__main__":
     if out_all:
         Path(additional_result_dir).mkdir(parents=True, exist_ok=True)
 
-    machine_types = get_machines(load_dir=GROUND_TRUTH_DATA_DIR)
+    machine_types = [m for m in get_machines(load_dir=GROUND_TRUTH_DATA_DIR) if m in MACHINE_TYPE_LIST]
     section_ids = get_section_ids(target_dir=GROUND_TRUTH_DATA_DIR)
 
     team_dirs = list(numpy.sort(glob.glob(teams_root_dir + "/*" * args.dir_depth)))
