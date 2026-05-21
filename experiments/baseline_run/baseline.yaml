@@ -4,6 +4,12 @@
 --result_directory: ../../results/baseline_run
 --export_dir: baseline
 
+# ToyRCCar eval (thesis default)
+--dataset: DCASE2025T2ToyRCCar
+--eval: True
+-tag: "id(0_)"
+--use_ids: 0
+
 --use_cuda: True
 --log_interval: 100
 --model: DCASE2023T2-AE

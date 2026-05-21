@@ -10,14 +10,22 @@ def yaml_load():
         param = yaml.safe_load(stream)
     return param
 
+_STORE_TRUE_KEYS = frozenset({
+    "-e", "--eval", "-d", "--dev",
+    "--train_only", "--test_only", "--restart",
+})
+
 def param_to_args_list(params):
-    params = list(itertools.chain.from_iterable(zip(params.keys(), params.values())))
     args_list = []
-    for param in params:
-        if type(param) is list:
-            args_list.extend([str(p) for p in param])
+    for key, value in params.items():
+        if key in _STORE_TRUE_KEYS:
+            if value in (True, "True", "true", 1, "1"):
+                args_list.append(str(key))
+            continue
+        if type(value) is list:
+            args_list.extend([str(p) for p in value])
         else:
-            args_list.append(str(param))
+            args_list.extend([str(key), str(value)])
     return args_list
 
 ########################################################################
@@ -85,7 +93,7 @@ def get_argparse():
     # dataset
     parser.add_argument('--dataset_directory', type=str, default='data',
                         help='Where to parent dataset dir')
-    parser.add_argument('--dataset', type=str, default='DCASE2023T2ToyCar', metavar='N',
+    parser.add_argument('--dataset', type=str, default='DCASE2025T2ToyRCCar', metavar='N',
                         help='dataset to use')
     parser.add_argument('-d', '--dev', action='store_true',
                         help='Use Development dataset')

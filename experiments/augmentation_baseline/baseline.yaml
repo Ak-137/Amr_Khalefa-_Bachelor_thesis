@@ -1,8 +1,6 @@
-# Latent-space Mahalanobis experiment (isolated from baseline_run).
-# Train with MSE; test with --score MAHALA for latent Mahalanobis scoring.
 --dataset_directory: ../../datasets/dcase2025
---result_directory: ../../results/latent_mahalanobis
---export_dir: latent_mahalanobis
+--result_directory: ../../results/augmentation_baseline
+--export_dir: baseline
 
 # ToyRCCar eval (thesis default)
 --dataset: DCASE2025T2ToyRCCar

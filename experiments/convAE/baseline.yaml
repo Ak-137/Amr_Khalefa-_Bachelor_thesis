@@ -1,7 +1,10 @@
 # Thesis layout: shared audio under ../../datasets/dcase2025/
 # Run with cwd = experiments/convAE (see repo scripts/).
 --dataset_directory: ../../datasets/dcase2025
---dataset: DCASE2025T2ToyCar
+--dataset: DCASE2025T2ToyRCCar
+--eval: True
+-tag: "id(0_)"
+--use_ids: 0
 --result_directory: ../../results/convAE
 --export_dir: convAE
 
