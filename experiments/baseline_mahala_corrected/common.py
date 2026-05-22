@@ -62,6 +62,8 @@ def get_argparse():
 
     parser.add_argument('--decision_threshold', type=float, default=0.9)
     parser.add_argument('--max_fpr', type=float, default=0.1)
+    parser.add_argument('--mahala_reg_lambda', type=float, default=1e-5,
+                        help='Ridge regularization shrinkage parameter for covariance inversion')
 
     # feature
     parser.add_argument('--n_mels',type=int, default=128, 
@@ -123,13 +125,5 @@ def get_argparse():
                         help='Run train only')
     parser.add_argument('--test_only', action='store_true', default=False,
                         help='Run test only')
-
-    # training-only feature augmentation (ToyRCCar robustness experiment)
-    parser.add_argument('--enable_augmentation', type=str2bool, default=False,
-                        help='Apply mild Gaussian noise during training epochs only')
-    parser.add_argument('--noise_level', type=float, default=0.02,
-                        help='Std of additive Gaussian noise on log-mel features')
-    parser.add_argument('--augmentation_probability', type=float, default=0.5,
-                        help='Per-sample probability of applying noise during training')
     
     return parser

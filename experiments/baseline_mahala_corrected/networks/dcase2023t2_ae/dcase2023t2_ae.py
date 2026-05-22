@@ -12,7 +12,6 @@ from tqdm import tqdm
 from networks.base_model import BaseModel
 from networks.dcase2023t2_ae.network import AENet
 from networks.criterion.mahala import cov_v, loss_function_mahala, calc_inv_cov
-from datasets.train_augmentation import maybe_augment_features
 from tools.plot_anm_score import AnmScoreFigData
 from tools.plot_loss_curve import csv_to_figdata
 
@@ -31,7 +30,9 @@ class DCASE2023T2AE(BaseModel):
 
     def init_model(self):
         self.block_size = self.data.height
-        return AENet(input_dim=self.data.input_dim, block_size=self.block_size)
+        model = AENet(input_dim=self.data.input_dim, block_size=self.block_size)
+        model.args = self.args
+        return model
 
     def get_log_header(self):
         self.column_heading_list=[
@@ -70,27 +71,12 @@ class DCASE2023T2AE(BaseModel):
         else:
             self.model.train()
             is_calc_cov = False
-            if epoch == self.epoch + 1 and getattr(self.args, "enable_augmentation", False):
-                print(
-                    "train augmentation: enabled "
-                    f"(noise_level={self.args.noise_level}, "
-                    f"p={self.args.augmentation_probability})"
-                )
 
-        aug_rng = np.random.default_rng(self.args.seed + epoch)
         for batch_idx, batch in enumerate(tqdm(train_loader)):
             data = batch[0]
             data = data.to(self.device).float()
             if data.shape[0] <= 1:
                 continue
-            if not is_calc_cov and getattr(self.args, "enable_augmentation", False):
-                data = maybe_augment_features(
-                    data,
-                    enable=True,
-                    noise_level=self.args.noise_level,
-                    probability=self.args.augmentation_probability,
-                    rng=aug_rng,
-                )
             data_name_list = batch[3]
             machine_id = torch.argmax(batch[2], dim=1).long()
             machine_id = machine_id.to(self.device)

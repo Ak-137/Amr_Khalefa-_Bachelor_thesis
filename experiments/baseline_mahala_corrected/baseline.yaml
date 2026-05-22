@@ -1,6 +1,9 @@
+# Thesis layout: shared audio under ../../datasets/dcase2025/
+# Run all commands with cwd = experiments/baseline_run (see scripts/).
 --dataset_directory: ../../datasets/dcase2025
---result_directory: ../../results/augmentation_baseline
---export_dir: augmentation_baseline
+--result_directory: ../../results/baseline_mahala_corrected
+--export_dir: baseline_corrected
+--mahala_reg_lambda: 1e-5
 
 # ToyRCCar eval (thesis default)
 --dataset: DCASE2025T2ToyRCCar
@@ -35,8 +38,3 @@
 -lr: 0.001
 --shuffle: True
 --validation_split: 0.1
-
-# training-only mild feature noise (set enable_augmentation: False to match baseline)
---enable_augmentation: True
---noise_level: 0.02
---augmentation_probability: 0.5
