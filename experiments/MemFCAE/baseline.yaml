@@ -1,0 +1,44 @@
+# Thesis layout: shared audio under ../../datasets/dcase2025/
+--dataset_directory: ../../datasets/dcase2025
+--result_directory: ../../results/MemFCAE
+--export_dir: MemFCAE
+
+# ToyRCCar eval (thesis default)
+--dataset: DCASE2025T2ToyRCCar
+--eval: True
+-tag: "id(0_)"
+--use_ids: 0
+
+# Memory-Augmented Fully Connected AE Parameters
+--use_memcae: True
+--num_memory_slots: 64
+# Small nonzero entropy sparsity weight encourages selective memory addressing; set to 0.0 for ablation.
+--memory_sparsity_weight: 0.0002
+
+--use_cuda: True
+--log_interval: 100
+--model: DCASE2023T2-AE
+--score: MSE
+--seed: 13711
+--is_auto_download: False
+
+--max_fpr: 0.1
+--decision_threshold: 0.9
+
+# feature
+--n_mels: 128
+--frames: 5
+--frame_hop_length: 1
+--n_fft: 1024
+--hop_length: 512
+--power: 2.0
+--fmin: 0.0
+--fmax: null
+--win_length: null
+
+# fit
+--batch_size: 256
+--epochs: 100
+-lr: 0.001
+--shuffle: True
+--validation_split: 0.1
