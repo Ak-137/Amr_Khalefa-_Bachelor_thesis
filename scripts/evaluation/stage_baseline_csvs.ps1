@@ -33,8 +33,12 @@ if ($files.Count -eq 0) {
 }
 
 foreach ($f in $files) {
-    Copy-Item -Path $f.FullName -Destination (Join-Path $destDir $f.Name) -Force
-    Write-Host "staged $($f.Name)"
+    $destName = $f.Name
+    if ($destName -like "*id(0_coralres_fixed)*") {
+        $destName = $destName -replace "id\(0_coralres_fixed\)", "id(0_)"
+    }
+    Copy-Item -Path $f.FullName -Destination (Join-Path $destDir $destName) -Force
+    Write-Host "staged $($f.Name) -> $destName"
 }
 
 # Archive copy under evaluation_runs/
