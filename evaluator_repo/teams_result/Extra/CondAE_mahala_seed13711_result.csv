@@ -1,0 +1,18 @@
+ToyRCCar
+section,AUC (all),AUC (source),AUC (target),pAUC,precision (source),precision (target),recall (source),recall (target),F1 score (source),F1 score (target)
+00,0.5505,0.5228000000000002,0.5782,0.5394736842105263,0.5,0.5,1.0,1.0,0.6666666666666666,0.6666666666666666
+,,AUC,pAUC,precision,recall,F1 score
+arithmetic mean,,0.5505000000000001,0.5394736842105263,0.5,1.0,0.6666666666666666
+harmonic mean,,0.5491061943687557,0.5394736842105263,0.5,1.0,0.6666666666666666
+source harmonic mean,,0.5228000000000002,0.5394736842105263,0.5,1.0,0.6666666666666666
+target harmonic mean,,0.5782,0.5394736842105263,0.5,1.0,0.6666666666666666
+
+,,AUC,pAUC,precision,recall,F1 score
+"arithmetic mean over all machine types, sections, and domains",,0.5505000000000001,0.5394736842105263,0.5,1.0,0.6666666666666666
+"harmonic mean over all machine types, sections, and domains",,0.5491061943687557,0.5394736842105263,0.5,1.0,0.6666666666666666
+"source harmonic mean over all machine types, sections, and domains",,0.5228000000000002,0.5394736842105263,0.5,1.0,0.6666666666666666
+"target harmonic mean over all machine types, sections, and domains",,0.5782,0.5394736842105263,0.5,1.0,0.6666666666666666
+
+official score,,0.5458573633007286
+official score ci95,,0.00032258894868288654
+
